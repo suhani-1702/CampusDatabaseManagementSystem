@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timetable</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <h1>Timetable</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Time</th>
+          <th>Room</th>
+          <th>Course</th>
+          <th>Faculty</th>
+          <th>Section</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in timetable %}
+          <tr>
+            <td>{{ row.day_of_week }}</td>
+            <td>{{ row.time_slot }}</td>
+            <td>{{ row.room.room_no }}</td>
+            <td>{{ row.course.course_code }} - {{ row.course.course_name }}</td>
+            <td>{{ row.faculty.name }}</td>
+            <td>{{ row.section.name }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

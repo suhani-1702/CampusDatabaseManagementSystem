@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <h1>Admin Dashboard</h1>
+    <p>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </p>
+
+    <section class="grid">
+      <div class="card"><h3>Students</h3><div class="metric">{{ stats.students }}</div></div>
+      <div class="card"><h3>Faculty</h3><div class="metric">{{ stats.faculty }}</div></div>
+      <div class="card"><h3>Courses</h3><div class="metric">{{ stats.courses }}</div></div>
+      <div class="card"><h3>Events</h3><div class="metric">{{ stats.events }}</div></div>
+    </section>
+
+    <section class="card">
+      <h2>Create User</h2>
+      <form method="POST" action="{{ url_for('admin_create_user') }}">
+        <div class="row">
+          <label>User Type</label>
+          <select name="user_type">
+            <option>Student</option>
+            <option>Faculty</option>
+            <option>Admin</option>
+          </select>
+        </div>
+        <div class="row"><label>Name</label><input name="name" required /></div>
+        <div class="row"><label>Email</label><input name="email" type="email" required /></div>
+        <div class="row"><label>Password</label><input name="password" type="password" required /></div>
+
+        <div class="row"><label>Department ID</label><input name="department_id" type="number" /></div>
+        <div class="row"><label>Section ID</label><input name="section_id" type="number" /></div>
+        <div class="row"><label>Subject</label><input name="subject" /></div>
+        <div class="row"><label>Experience (years)</label><input name="experience_years" type="number" min="0" /></div>
+
+        <button type="submit">Create</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Events</h2>
+      <form method="POST" action="{{ url_for('admin_events') }}">
+        <div class="row"><label>Name</label><input name="event_name" required /></div>
+        <div class="row"><label>Date</label><input type="date" name="date" required /></div>
+        <div class="row"><label>Venue</label><input name="venue" required /></div>
+        <div class="row">
+          <label>Status</label>
+          <select name="status">
+            <option>Scheduled</option>
+            <option>Ongoing</option>
+            <option>Completed</option>
+            <option>Cancelled</option>
+          </select>
+        </div>
+        <button type="submit">Create Event</button>
+      </form>
+      <div class="list">
+        {% for ev in events %}
+          <div class="list-item">{{ ev.event_name }} - {{ ev.date }} - {{ ev.status }}</div>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+</body>
+</html>
