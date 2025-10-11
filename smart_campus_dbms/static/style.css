@@ -1,0 +1,21 @@
+* { box-sizing: border-box; }
+body { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; margin: 0; }
+.container { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+h1,h2,h3 { margin: 0 0 1rem; }
+.card { background: #111827; border: 1px solid #1f2937; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+.metric { font-size: 2rem; font-weight: 700; }
+label { display: block; margin: 0.5rem 0 0.25rem; }
+input, select, button { width: 100%; padding: 0.6rem; border-radius: 6px; border: 1px solid #374151; background: #0b1220; color: #e5e7eb; }
+button { cursor: pointer; background: #2563eb; border: none; margin-top: 0.75rem; }
+button:hover { background: #1d4ed8; }
+.flashes { list-style: none; padding: 0; }
+.flashes li { padding: 0.5rem; border-radius: 6px; margin-bottom: 0.5rem; }
+.flashes .success { background: #065f46; }
+.flashes .danger { background: #7f1d1d; }
+.flashes .warning { background: #78350f; }
+
+/* Table */
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 0.5rem; border-bottom: 1px solid #1f2937; }
+tr:hover { background: #0b1324; }

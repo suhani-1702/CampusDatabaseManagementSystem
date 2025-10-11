@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faculty Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <h1>Faculty Dashboard</h1>
+    <p><a href="{{ url_for('logout') }}">Logout</a></p>
+
+    <section class="card">
+      <h2>Your Timetable</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Room</th>
+            <th>Course</th>
+            <th>Section</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in timetable %}
+            <tr>
+              <td>{{ row.day_of_week }}</td>
+              <td>{{ row.time_slot }}</td>
+              <td>{{ row.room.room_no }}</td>
+              <td>{{ row.course.course_code }} - {{ row.course.course_name }}</td>
+              <td>{{ row.section.name }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Update Grades</h2>
+      <form method="POST" action="{{ url_for('faculty_update_grade') }}">
+        <div class="row"><label>Student ID</label><input name="student_id" type="number" required /></div>
+        <div class="row"><label>Course ID</label><input name="course_id" type="number" required /></div>
+        <div class="row"><label>Semester</label><input name="semester" required /></div>
+        <div class="row"><label>Grade</label><input name="grade" required /></div>
+        <button type="submit">Save</button>
+      </form>
+    </section>
+  </div>
+</body>
+</html>
